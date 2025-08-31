@@ -100,41 +100,30 @@ Hindi Intro → Cultural Prefs → AI Conversation → Achievement Unlock → Su
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ Setup & Installation (**Quick Start Guide**)
 
-1. **Clone the Repository:**
+### **⚡ One-Command Setup**
 ```bash
+# Clone and run in under 2 minutes
 git clone https://github.com/Aayu095/DidiDial.git
-cd dididial
+cd dididial && npm install && npm start
 ```
 
-2. **Install Dependencies:**
+### **📱 Instant Demo Access**
+1. **Install Expo Go** (2 minutes) - Available on App Store/Play Store
+2. **Scan QR Code** - Instant access to live demo
+3. **Experience the Magic** - Voice conversation with AI "Didi" in Hindi
+
+### **🔧 Development Setup**
 ```bash
-npm install
-```
+# Prerequisites: Node.js 16+, Expo CLI
+npm install -g @expo/cli
 
-3. **Set Up Environment Variables:**
-Create a `.env` file in your project root:
-```env
-EXPO_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-EXPO_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-EXPO_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
-```
+# Environment setup
+cp .env.example .env
+# Add your API keys: EXPO_PUBLIC_FIREBASE_API_KEY, EXPO_PUBLIC_GEMINI_API_KEY
 
-4. **Firebase Setup:**
-* Create a Firebase project and enable Firestore Database and Authentication
-* Configure appropriate security rules for production use
-
----
-
-## 🚀 Running Locally
-
-```bash
-# Start the development server
-npm start
-
-# Using Expo Go (scan QR code Or press 'a' for Android emulator)
+# Launch development server
 npm start
 ```
 
@@ -195,7 +184,5 @@ For queries, collaborations, or partnership opportunities:
 **🏆 Built with ❤️ for social impact and women's empowerment**
 
 *Together, we're bridging the digital divide and creating a more inclusive world where every woman has access to the knowledge and tools she needs to thrive.*
-
-**⭐ Star this repo if you believe in empowering women through technology!**
 
 </div>
