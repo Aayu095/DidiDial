@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Enhanced Gemini Voice Assistant with improved error handling and real API integration
 const GEMINI_API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY || '';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+const GEMINI_API_URL = process.env.EXPO_PUBLIC_GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 // Enhanced prompts with better conversation flow
 const ENHANCED_VOICE_ASSISTANT_PROMPTS = {
@@ -270,7 +270,8 @@ class EnhancedGeminiVoiceAssistant {
   }
 
   async callGeminiAPI() {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'your_gemini_key') {
+    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'your_gemini_key' || GEMINI_API_KEY === '') {
+      console.warn('Gemini API key not configured, using fallback response');
       throw new Error('Gemini API key not configured');
     }
 

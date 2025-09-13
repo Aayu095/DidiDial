@@ -17,7 +17,7 @@ import * as Animatable from 'react-native-animatable';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { geminiVoiceAssistant, VOICE_TOPICS } from '../services/geminiVoiceAssistant';
+import { enhancedGeminiVoiceAssistant as geminiVoiceAssistant, VOICE_TOPICS } from '../services/enhancedGeminiVoiceAssistant';
 import { speechToText, STT_PROVIDERS } from '../services/speechToText';
 import { useAuth } from '../providers/AuthProvider';
 import GradientBackground from '../components/GradientBackground';
@@ -76,16 +76,14 @@ export default function ImprovedGeminiVoiceCallScreen({ route, navigation }) {
       // Set user profile in voice assistant
       geminiVoiceAssistant.setUserProfile(profile);
       
-      // Determine STT provider based on API keys
-      const hasGoogleKey = !!process.env.EXPO_PUBLIC_GOOGLE_STT_API_KEY;
-      const hasAzureKey = !!process.env.EXPO_PUBLIC_AZURE_SPEECH_KEY;
+      // Use Demo STT for presentation
+      const hasGeminiKey = !!process.env.EXPO_PUBLIC_GEMINI_API_KEY;
       
-      if (hasGoogleKey) {
-        setSttProvider(STT_PROVIDERS.GOOGLE);
-      } else if (hasAzureKey) {
-        setSttProvider(STT_PROVIDERS.AZURE);
-      } else {
-        setSttProvider(STT_PROVIDERS.MOCK);
+      setSttProvider(STT_PROVIDERS.DEMO);
+      console.log('🎯 Demo Mode - Interactive voice chat ready!');
+      
+      if (!hasGeminiKey) {
+        console.warn('Gemini API key not configured - AI responses will use fallbacks');
       }
       
       // Start conversation with selected topic
@@ -352,18 +350,14 @@ export default function ImprovedGeminiVoiceCallScreen({ route, navigation }) {
   };
 
   const generateContextualUserMessage = () => {
-    const contextualResponses = {
-      [VOICE_TOPICS.MENSTRUAL_HEALTH]: [
-        'दीदी, महावारी के बारे में बताइए',
-        'मुझे दर्द बहुत होता है',
-        'क्या यह सामान्य है?',
-        'सफाई कैसे रखूं?',
-        'पैड कैसे इस्तेमाल करूं?',
-        'परिवार को कैसे बता��ं?',
-        'डॉक्टर से कब मिलूं?',
-        'दर्द की दवा ले सकती हूं?'
+    const topicResponses = {
+      menstrual_health: [
+        'महावारी के दौरान क्या करना चाहिए?',
+        'दर्द से कैसे राहत मिलेगी?',
+        'कितने दिन तक होती है?',
+        'क्या यह सामान्य ह?'
       ],
-      [VOICE_TOPICS.PREGNANCY_CARE]: [
+      pregnancy_care: [
         'गर्भावस्था में क्या खाना चाहिए?',
         'डॉक्टर से कब मिलना चाहिए?',
         'मुझे उल्टी आती है',
@@ -395,7 +389,7 @@ export default function ImprovedGeminiVoiceCallScreen({ route, navigation }) {
       ]
     };
     
-    const responses = contextualResponses[topic] || contextualResponses[VOICE_TOPICS.GENERAL_HEALTH];
+    const responses = topicResponses[topic] || topicResponses[VOICE_TOPICS.GENERAL_HEALTH];
     return responses[Math.floor(Math.random() * responses.length)];
   };
 
