@@ -490,6 +490,17 @@ class EnhancedGeminiVoiceAssistant {
 // Export singleton instance
 export const enhancedGeminiVoiceAssistant = new EnhancedGeminiVoiceAssistant();
 
+// Compatibility function for legacy imports
+export async function sendToLLM(message, context = 'general_health') {
+  try {
+    const response = await enhancedGeminiVoiceAssistant.sendMessage(message);
+    return response.text || 'मैं यहां आपकी मदद के लिए हूं बहन। कुछ और पूछना चाहती हैं?';
+  } catch (error) {
+    console.error('sendToLLM error:', error);
+    return 'मैं यहां आपकी मदद के लिए हूं बहन। कुछ और पूछना चाहती हैं?';
+  }
+}
+
 // Export topic constants
 export const VOICE_TOPICS = {
   MENSTRUAL_HEALTH: 'menstrual_health',

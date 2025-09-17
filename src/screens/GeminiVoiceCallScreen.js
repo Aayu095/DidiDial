@@ -17,7 +17,7 @@ import * as Animatable from 'react-native-animatable';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { geminiVoiceAssistant, VOICE_TOPICS } from '../services/geminiVoiceAssistant';
+import { enhancedGeminiVoiceAssistant as geminiVoiceAssistant, VOICE_TOPICS } from '../services/enhancedGeminiVoiceAssistant';
 import { useAuth } from '../providers/AuthProvider';
 import GradientBackground from '../components/GradientBackground';
 import VoiceVisualizer from '../components/VoiceVisualizer';

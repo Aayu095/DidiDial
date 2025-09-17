@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { ENHANCED_CONTENT_PACKS } from '../services/offlineContent';
-import { sendToLLM } from '../services/gemini';
+import { sendToLLM } from '../services/enhancedGeminiVoiceAssistant';
 import { saveTurnToFirestore, updateStreakAndBadges } from '../services/firebase';
 import { useAuth } from '../providers/AuthProvider';
 import GradientBackground from '../components/GradientBackground';

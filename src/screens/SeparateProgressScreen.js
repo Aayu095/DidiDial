@@ -15,7 +15,7 @@ import { COLORS, TYPOGRAPHY, SPACING, BORDER_RADIUS } from '../config/theme';
 import GradientBackground from '../components/GradientBackground';
 import ProgressRing from '../components/ProgressRing';
 import { VIDEO_LEARNING_MODULES } from './VideoLearningScreen';
-import { VOICE_TOPICS } from '../services/geminiVoiceAssistant';
+import { VOICE_TOPICS } from '../services/enhancedGeminiVoiceAssistant';
 
 const { width } = Dimensions.get('window');
 
